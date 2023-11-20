@@ -31,5 +31,7 @@ tokens = [
     "FLOAT_LITERAL",  # Float (e.g. 1.0)
     "INTEGER_LITERAL",  # Integer (e.g. 1)
     "CHAR_LITERAL",  # Boolean (e.g. true)
+    # Helpers
+    "EOF"
     # Keywords
 ] + list(keywords.values())
