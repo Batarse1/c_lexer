@@ -97,7 +97,7 @@ lexer.level = 0
 
 ply_table = PrettyTable()
 ply_table.field_names = ["Type", "Value", "Line Number", "Position", "level"]
-stack = ['EOF', 0]
+stack = [0,'EOF']
 
 # for tok in lexer:
 #     ply_table.add_row([tok.type, tok.value, tok.lineno, tok.lexpos, lexer.level])
@@ -106,7 +106,7 @@ def parser():
     file = open("minimal_example.c", "r")
     lexer.input(file.read() + "$")
     tok=lexer.token()
-    x=stack[-1]
+    x=stack[0]
 
     while True:
         print("tok.type = " + tok.type)
@@ -119,9 +119,9 @@ def parser():
         else:
             if x == tok.type and x != 'EOF': #terminal
                 print("Current stack = " + str(stack))
-                stack.pop()
+                stack.pop(0)
                 print("Poped stack = " + str(stack))
-                x=stack[-1]
+                x=stack[0]
                 print("------------")
                 ply_table.add_row([tok.type, tok.value, tok.lineno, tok.lexpos, lexer.level])
                 tok=lexer.token()                
@@ -139,12 +139,12 @@ def parser():
                     return 0;
                 else:
                     print("Current stack = " + str(stack))
-                    stack.pop()
+                    stack.pop(0)
                     print("Poped stack = " + str(stack))
                     add_to_stack(cell)
                     print("Added stack = " + str(stack))
                     print("------------")
-                    x=stack[-1]            
+                    x=stack[0]            
 
 def find_rules(non_terminal, terminal):
     for i in range(len(table_ll1)):
@@ -154,7 +154,7 @@ def find_rules(non_terminal, terminal):
 def add_to_stack(production):
     for element in reversed(production):
         if element != 'empty': 
-            stack.append(element)
+            stack.insert(0,element)
 
 parser()
 # This is only for the executable file
