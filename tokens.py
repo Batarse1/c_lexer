@@ -40,5 +40,5 @@ sync_tokens = [
     "LCURL",  # Left curly brace {
     "RCURL",  # Right curly brace }
     "SEMICOLON",  # Semicolon ;
-    "COMMA"
+    "COMMA",
 ]

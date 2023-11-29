@@ -6,7 +6,6 @@ from keywords import keywords
 from tokens import tokens
 from tokens import sync_tokens
 from parsing_table import table_ll1
-# import parsing_table 
 
 # Arithmetic Operators
 t_MULT = r"\*"
@@ -98,11 +97,7 @@ lexer = lex.lex()
 lexer.level = 0
 lexer_tokens = []
 
-
 stack = ['EOF', 0]
-
-# for tok in lexer:
-#     ply_table.add_row([tok.type, tok.value, tok.lineno, tok.lexpos, lexer.level])
 
 def parser():
     file_path = "main.c"
@@ -115,6 +110,7 @@ def parser():
 
     while True:
         if panic_mode and tok.type not in sync_tokens:
+            print("Token pass = " + str(x))
             tok=lexer.token()
             continue
         else: 
@@ -122,6 +118,7 @@ def parser():
         
         # print("tok.type = " + tok.type)
         # print("x = " + str(x))
+        # print("Stack = " + str(stack))
         if x == tok.type and x == 'EOF':
             if (not fail_input):
                 print("The code was recognized successfully")
@@ -129,11 +126,8 @@ def parser():
             return
         else:
             if x == tok.type and x != 'EOF': #terminal
-                # print("Current stack = " + str(stack))
                 stack.pop()
-                # print("Poped stack = " + str(stack))
                 x=stack[-1]
-                # print("------------")
                 lexer_tokens.append({
                     "type": tok.type,
                     "value": tok.value,
@@ -141,18 +135,20 @@ def parser():
                     "position": tok.lexpos,
                     "level": lexer.level,
                 })
-
                 tok=lexer.token()                
                 continue
             if x in tokens and x != tok.type:
                 print("Compilation Failed")
                 print(file_path + ":" + str(lexer.lineno) + ":" + find_column(file_path,tok) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
-                # return 0;
+                panic_mode = True
+                fail_input = True
+                if x == "EOF":
+                    return
+                x = stack.pop()
+
             if x not in tokens: #non-terminal
-                # print("Entering to the table")
                 cell=find_rules(x,tok.type)
-                # print("Cell = " + str(cell))
-                if  cell is None:
+                if cell is None:
                     print("Compilation Failed")
                     print(file_path + ":" + str(lexer.lineno) + ":" + find_column(file_path,tok) + " error: was not expected " + str(tok.type) + " in position " + find_column(file_path,tok))
                     panic_mode = True
@@ -160,14 +156,9 @@ def parser():
                     if tok.type == "EOF":
                         return
                     tok = lexer.token()
-                    # return 0;
                 else:
-                    # print("Current stack = " + str(stack))
                     stack.pop()
-                    # print("Poped stack = " + str(stack))
                     add_to_stack(cell)
-                    # print("Added stack = " + str(stack))
-                    # print("------------")
                     x=stack[-1]            
 
 def find_rules(non_terminal, terminal):
