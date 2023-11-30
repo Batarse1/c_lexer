@@ -24,7 +24,7 @@ int main() {
     if(time > 19){
       float d = 1.0;
       float f = 2.0;
-      float o = (d + f) - f * d / f;
+      float o = (d + f) - f * d / f;  
     }
     else {
       int g = 1;

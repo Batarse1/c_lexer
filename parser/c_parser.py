@@ -7,13 +7,15 @@ from prettytable import PrettyTable
 from .parser_find_rules import find_rules
 from .parser_find_column import find_column
 from .parser_add_to_stack import add_to_stack
+from .symbols_table import generate_symbols_table
 
 stack = ['EOF', 0]
 
 def c_parser(lexer, file_path):
+    symbols_table = {}
     lexer_tokens = []
     tok=lexer.token()
-    panic_mode = False 
+    panic_mode = False
     fail_input = False
 
     x=stack[-1]
@@ -25,10 +27,11 @@ def c_parser(lexer, file_path):
             continue
         else: 
             panic_mode = False
-        
-        # print("tok.type = " + tok.type)
-        # print("x = " + str(x))
-        # print("Stack = " + str(stack))
+        print("tok.type = " + tok.type)
+        print("x = " + str(x))
+        print("Stack = " + str(stack))
+
+        symbols_table = generate_symbols_table(tok, lexer, x)
         if x == tok.type and x == 'EOF':
             if (not fail_input):
                 print("The code was recognized successfully")
@@ -48,10 +51,10 @@ def c_parser(lexer, file_path):
                     "position": tok.lexpos,
                     "level": lexer.level,
                 })
-                tok=lexer.token()                
+                tok=lexer.token()
                 continue
             if x in tokens and x != tok.type:
-                # print("Compilation Failed")
+                print("Compilation Failed")
                 print(file_path + ":" + str(lexer.lineno) + ":" + str(lexer.column) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
                 panic_mode = True
                 fail_input = True
@@ -76,21 +79,8 @@ def c_parser(lexer, file_path):
                 else:
                     # print("Current stack = " + str(stack))
                     stack.pop()
-                    # print("Poped stack = " + str(stack))                    
+                    # print("Poped stack = " + str(stack))
                     add_to_stack(stack, cell)
                     # print("Added stack = " + str(stack))
                     # print("------------")
-                    x=stack[-1]            
-
-# def generate_symbols_table(tokens):
-#     symbols_map = {}
-#     i = 0
-
-#     while i < len(token_array):
-#         current_token = token_array[i]
-        
-#         if current_token['type'] == "INT":
-#             i+=1
-#             if i < len(token_array) and token_array[i]['type'] == "IDENTIFIER":
-#                 i+=1
-#                 if i < len(token_array) and
+                    x=stack[-1]

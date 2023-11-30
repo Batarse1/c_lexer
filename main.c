@@ -1,3 +1,5 @@
-int   a,;
-int a = 1234;
-int ;
+int a;
+int a,b
+int c;
+int c b;
+int d;
