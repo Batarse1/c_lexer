@@ -32,7 +32,8 @@ tokens = [
     "INTEGER_LITERAL",  # Integer (e.g. 1)
     "CHAR_LITERAL",  # Boolean (e.g. true)
     # Helpers
-    "EOF"
+    "EOF",
+    "IGNORE"
     # Keywords
 ] + list(keywords.values())
 

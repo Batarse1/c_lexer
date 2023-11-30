@@ -1,3 +1,3 @@
-int a,;
-int b,
-int c;
+int   a,;
+int a = 1234;
+int ;

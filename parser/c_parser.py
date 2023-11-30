@@ -4,6 +4,10 @@ from parsing_table import table_ll1
 
 from prettytable import PrettyTable
 
+from .parser_find_rules import find_rules
+from .parser_find_column import find_column
+from .parser_add_to_stack import add_to_stack
+
 stack = ['EOF', 0]
 
 def c_parser(lexer, file_path):
@@ -48,7 +52,7 @@ def c_parser(lexer, file_path):
                 continue
             if x in tokens and x != tok.type:
                 # print("Compilation Failed")
-                print(file_path + ":" + str(lexer.lineno) + ":" + find_column(file_path,tok) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
+                print(file_path + ":" + str(lexer.lineno) + ":" + str(lexer.column) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
                 panic_mode = True
                 fail_input = True
                 if x == "EOF":
@@ -56,13 +60,13 @@ def c_parser(lexer, file_path):
                 stack.pop()
                 x = stack[-1]
                 # return 0;
-            if x not in tokens: #non-terminal
+            elif x not in tokens: #non-terminal
                 # print("Entering to the table")
-                cell=find_rules(x,tok.type)
+                cell=find_rules(table_ll1, x,tok.type)
                 # print("Cell = " + str(cell))
                 if cell is None:
                     # print("Compilation Failed")
-                    print(file_path + ":" + str(lexer.lineno) + ":" + find_column(file_path,tok) + " error: was not expected " + str(tok.type) + " in position " + find_column(file_path,tok))
+                    print(file_path + ":" + str(lexer.lineno) + ":" + str(lexer.column) + " error: was not expected " + str(tok.type) + " in position " + str(lexer.column))
                     panic_mode = True
                     fail_input = True
                     if tok.type == "EOF":
@@ -73,24 +77,10 @@ def c_parser(lexer, file_path):
                     # print("Current stack = " + str(stack))
                     stack.pop()
                     # print("Poped stack = " + str(stack))                    
-                    add_to_stack(cell)
+                    add_to_stack(stack, cell)
                     # print("Added stack = " + str(stack))
                     # print("------------")
                     x=stack[-1]            
-
-def find_rules(non_terminal, terminal):
-    for i in range(len(table_ll1)):
-        if(table_ll1[i][0] == non_terminal and table_ll1[i][1] == terminal):
-            return table_ll1[i][2]
-
-def add_to_stack(production):
-    for element in reversed(production):
-        if element != 'empty': 
-            stack.append(element)
-
-def find_column(input, token):
-    line_start = input.rfind('\n', 0, token.lexpos) + 1
-    return str((token.lexpos - line_start) + 1)
 
 # def generate_symbols_table(tokens):
 #     symbols_map = {}
