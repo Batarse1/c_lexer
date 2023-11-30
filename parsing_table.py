@@ -88,7 +88,7 @@ from non_terminals import NT
 # CallFunctionArg -> Expression ArgumentsMulti -> [NT.Expression.value, NT.ArgumentsMulti.value]
 # CallFunctionArg -> '' -> ["empty"]
 
-# ArgumentsMulti -> "COMMA" Expression Arguments -> ["COMMA", NT.Expression.value, NT.Arguments.value]
+# ArgumentsMulti -> "COMMA" Expression ArgumentsMulti -> ["COMMA", NT.Expression.value, NT.ArgumentsMulti.value]
 # ArgumentsMulti -> '' -> ["empty"]
 
 # While -> "WHILE" "LPAREN" Expression "RPAREN" "LCURL" Statement "RCURL" -> ["WHILE", "LPAREN", NT.Expression.value, "RPAREN", "LCURL", NT.Statement.value, "RCURL"]
