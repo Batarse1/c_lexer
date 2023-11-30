@@ -163,7 +163,7 @@ def c_lexer():
         pass
 
     # End of line
-    t_EOF= r'\$'
+    t_EOF= r"\$"
 
     # Error handling rule
     def t_error(t):

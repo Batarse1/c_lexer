@@ -42,4 +42,5 @@ sync_tokens = [
     "RCURL",  # Right curly brace }
     "SEMICOLON",  # Semicolon ;
     "COMMA",
+    "EOF"
 ]
