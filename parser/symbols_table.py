@@ -1,6 +1,7 @@
 from tokens import tokens
 from non_terminals import NT
 
+symbols_table_id = 0
 current_id = 0
 non_terminals_symbols_table = {
 }
@@ -30,6 +31,8 @@ def generate_symbols_table(token, lexer, current_stack):
         if non_terminals_symbols_table[current_id]["start"] == NT.D.value and current_stack in tokens and current_stack == token.type:
             if token.type == "IDENTIFIER":
                 symbols_table[token.value] = {
+                    "id": symbols_table_id,
+                    "state": False,
                     "type": non_terminals_symbols_table[current_id]["type"],
                     "body": [],
                     "line_number": lexer.lineno,
