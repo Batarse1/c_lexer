@@ -1,11 +1,18 @@
 from keywords import keywords
 
 tokens = [
+    # Includes
+    "PREPROCESSOR",  # Preprocessor (e.g. #include <stdio.h>)
     # Arithmetic Operators
     "MULT",  # Multiplication *
     "DIV",  # Division /
     "ADD",  # Addition +
     "SUB",  # Subtraction -
+    # Bits Operators
+    "AMPERSAND",  # Ampersand &
+    "PIPE",  # Pipe |
+    "CIRCUMFLEX",  # Circumflex ^
+    "BITNOT",  # Bitwise not ~
     # Parentheses
     "LPAREN",  # Left parenthesis (
     "RPAREN",  # Right parenthesis )
@@ -15,6 +22,7 @@ tokens = [
     # Punctuation
     "SEMICOLON",  # Semicolon ;
     "COMMA",  # Comma ,
+    "DOT",  # Dot .
     # Assignment Operator
     "ASSIGNMENT",  # Assignment =
     # Comparison Operators

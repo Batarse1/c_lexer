@@ -4,6 +4,13 @@ from tokens import tokens
 from keywords import keywords
 
 def c_lexer():
+    # Includes
+    def t_PREPROCESSOR(t):
+        r"\#\w+"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+
     # Arithmetic Operators
     def t_MULT(t):
         r"\*"
@@ -22,6 +29,28 @@ def c_lexer():
         return t
     def t_SUB(t):
         r"-"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+
+    # Bits Operators
+    def t_AMPERSAND(t):
+        r"\&"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_PIPE(t):
+        r"\|"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_CIRCUMFLEX(t):
+        r"\^"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_BITNOT(t):
+        r"\~"
         t.column = t.lexer.column
         t.lexer.column += len(t.value)
         return t
@@ -61,6 +90,11 @@ def c_lexer():
         return t
     def t_COMMA(t):
         r"\,"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_DOT(t):
+        r"\."
         t.column = t.lexer.column
         t.lexer.column += len(t.value)
         return t
