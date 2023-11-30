@@ -1,3 +1,3 @@
-int d;
-float v, b a;
-int a,b,v
+int a,;
+int b,
+int c;
