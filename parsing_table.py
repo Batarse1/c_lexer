@@ -97,10 +97,10 @@ from non_terminals import NT
 
 
 table_ll1 = [
-[NT.S.value, "VOID", None],
-[NT.S.value, "INT", None],
-[NT.S.value, "CHAR", None],
-[NT.S.value, "FLOAT", None],
+[NT.S.value, "VOID", [NT.Includes.value, NT.Globals.value]],
+[NT.S.value, "INT", [NT.Includes.value, NT.Globals.value]],
+[NT.S.value, "CHAR", [NT.Includes.value, NT.Globals.value]],
+[NT.S.value, "FLOAT", [NT.Includes.value, NT.Globals.value]],
 [NT.S.value, "IF", None],
 [NT.S.value, "ELSE", None],
 [NT.S.value, "FUNCTION", None],
@@ -108,7 +108,7 @@ table_ll1 = [
 [NT.S.value, "CONTINUE", None],
 [NT.S.value, "BREAK", None],
 [NT.S.value, "RETURN", None],
-[NT.S.value, "PREPROCESSOR", None],
+[NT.S.value, "PREPROCESSOR", [NT.Includes.value, NT.Globals.value]],
 [NT.S.value, "MULT", None],
 [NT.S.value, "DIV", None],
 [NT.S.value, "ADD", None],
@@ -135,7 +135,8 @@ table_ll1 = [
 [NT.S.value, "FLOAT_LITERAL", None],
 [NT.S.value, "INTEGER_LITERAL", None],
 [NT.S.value, "CHAR_LITERAL", None],
-[NT.S.value, "EOF", None],
+[NT.S.value, "EOF", [NT.Includes.value, NT.Globals.value]],
+
 [NT.Type.value, "VOID", None],
 [NT.Type.value, "INT", None],
 [NT.Type.value, "CHAR", None],
@@ -175,6 +176,7 @@ table_ll1 = [
 [NT.Type.value, "INTEGER_LITERAL", None],
 [NT.Type.value, "CHAR_LITERAL", None],
 [NT.Type.value, "EOF", None],
+
 [NT.Values.value, "VOID", None],
 [NT.Values.value, "INT", None],
 [NT.Values.value, "CHAR", None],
@@ -214,6 +216,7 @@ table_ll1 = [
 [NT.Values.value, "INTEGER_LITERAL", None],
 [NT.Values.value, "CHAR_LITERAL", None],
 [NT.Values.value, "EOF", None],
+
 [NT.OperationAri.value, "VOID", None],
 [NT.OperationAri.value, "INT", None],
 [NT.OperationAri.value, "CHAR", None],
@@ -253,6 +256,7 @@ table_ll1 = [
 [NT.OperationAri.value, "INTEGER_LITERAL", None],
 [NT.OperationAri.value, "CHAR_LITERAL", None],
 [NT.OperationAri.value, "EOF", None],
+
 [NT.OperationLogic.value, "VOID", None],
 [NT.OperationLogic.value, "INT", None],
 [NT.OperationLogic.value, "CHAR", None],
@@ -292,6 +296,7 @@ table_ll1 = [
 [NT.OperationLogic.value, "INTEGER_LITERAL", None],
 [NT.OperationLogic.value, "CHAR_LITERAL", None],
 [NT.OperationLogic.value, "EOF", None],
+
 [NT.Operationbit.value, "VOID", None],
 [NT.Operationbit.value, "INT", None],
 [NT.Operationbit.value, "CHAR", None],
@@ -331,6 +336,7 @@ table_ll1 = [
 [NT.Operationbit.value, "INTEGER_LITERAL", None],
 [NT.Operationbit.value, "CHAR_LITERAL", None],
 [NT.Operationbit.value, "EOF", None],
+
 [NT.OperationbitNot.value, "VOID", None],
 [NT.OperationbitNot.value, "INT", None],
 [NT.OperationbitNot.value, "CHAR", None],
@@ -370,6 +376,7 @@ table_ll1 = [
 [NT.OperationbitNot.value, "INTEGER_LITERAL", None],
 [NT.OperationbitNot.value, "CHAR_LITERAL", None],
 [NT.OperationbitNot.value, "EOF", None],
+
 [NT.Includes.value, "VOID", None],
 [NT.Includes.value, "INT", None],
 [NT.Includes.value, "CHAR", None],
@@ -409,6 +416,7 @@ table_ll1 = [
 [NT.Includes.value, "INTEGER_LITERAL", None],
 [NT.Includes.value, "CHAR_LITERAL", None],
 [NT.Includes.value, "EOF", None],
+
 [NT.Globals.value, "VOID", None],
 [NT.Globals.value, "INT", None],
 [NT.Globals.value, "CHAR", None],
@@ -448,6 +456,7 @@ table_ll1 = [
 [NT.Globals.value, "INTEGER_LITERAL", None],
 [NT.Globals.value, "CHAR_LITERAL", None],
 [NT.Globals.value, "EOF", None],
+
 [NT.GlobalsStartTypeId.value, "VOID", None],
 [NT.GlobalsStartTypeId.value, "INT", None],
 [NT.GlobalsStartTypeId.value, "CHAR", None],
@@ -526,6 +535,7 @@ table_ll1 = [
 [NT.DeclarationsForm.value, "INTEGER_LITERAL", None],
 [NT.DeclarationsForm.value, "CHAR_LITERAL", None],
 [NT.DeclarationsForm.value, "EOF", None],
+
 [NT.Declarator.value, "VOID", None],
 [NT.Declarator.value, "INT", None],
 [NT.Declarator.value, "CHAR", None],
@@ -565,6 +575,7 @@ table_ll1 = [
 [NT.Declarator.value, "INTEGER_LITERAL", None],
 [NT.Declarator.value, "CHAR_LITERAL", None],
 [NT.Declarator.value, "EOF", None],
+
 [NT.Function.value, "VOID", None],
 [NT.Function.value, "INT", None],
 [NT.Function.value, "CHAR", None],
@@ -604,6 +615,7 @@ table_ll1 = [
 [NT.Function.value, "INTEGER_LITERAL", None],
 [NT.Function.value, "CHAR_LITERAL", None],
 [NT.Function.value, "EOF", None],
+
 [NT.VoidFunction.value, "VOID", None],
 [NT.VoidFunction.value, "INT", None],
 [NT.VoidFunction.value, "CHAR", None],
@@ -643,6 +655,7 @@ table_ll1 = [
 [NT.VoidFunction.value, "INTEGER_LITERAL", None],
 [NT.VoidFunction.value, "CHAR_LITERAL", None],
 [NT.VoidFunction.value, "EOF", None],
+
 [NT.Params.value, "VOID", None],
 [NT.Params.value, "INT", None],
 [NT.Params.value, "CHAR", None],
@@ -682,6 +695,7 @@ table_ll1 = [
 [NT.Params.value, "INTEGER_LITERAL", None],
 [NT.Params.value, "CHAR_LITERAL", None],
 [NT.Params.value, "EOF", None],
+
 [NT.ParamMulti.value, "VOID", None],
 [NT.ParamMulti.value, "INT", None],
 [NT.ParamMulti.value, "CHAR", None],
@@ -721,6 +735,7 @@ table_ll1 = [
 [NT.ParamMulti.value, "INTEGER_LITERAL", None],
 [NT.ParamMulti.value, "CHAR_LITERAL", None],
 [NT.ParamMulti.value, "EOF", None],
+
 [NT.Expression.value, "VOID", None],
 [NT.Expression.value, "INT", None],
 [NT.Expression.value, "CHAR", None],
@@ -760,6 +775,7 @@ table_ll1 = [
 [NT.Expression.value, "INTEGER_LITERAL", None],
 [NT.Expression.value, "CHAR_LITERAL", None],
 [NT.Expression.value, "EOF", None],
+
 [NT.InitialExpression.value, "VOID", None],
 [NT.InitialExpression.value, "INT", None],
 [NT.InitialExpression.value, "CHAR", None],
@@ -799,6 +815,7 @@ table_ll1 = [
 [NT.InitialExpression.value, "INTEGER_LITERAL", None],
 [NT.InitialExpression.value, "CHAR_LITERAL", None],
 [NT.InitialExpression.value, "EOF", None],
+
 [NT.MultpleExclamation.value, "VOID", None],
 [NT.MultpleExclamation.value, "INT", None],
 [NT.MultpleExclamation.value, "CHAR", None],
@@ -838,6 +855,7 @@ table_ll1 = [
 [NT.MultpleExclamation.value, "INTEGER_LITERAL", None],
 [NT.MultpleExclamation.value, "CHAR_LITERAL", None],
 [NT.MultpleExclamation.value, "EOF", None],
+
 [NT.ExpressionPrime.value, "VOID", None],
 [NT.ExpressionPrime.value, "INT", None],
 [NT.ExpressionPrime.value, "CHAR", None],
@@ -877,6 +895,7 @@ table_ll1 = [
 [NT.ExpressionPrime.value, "INTEGER_LITERAL", None],
 [NT.ExpressionPrime.value, "CHAR_LITERAL", None],
 [NT.ExpressionPrime.value, "EOF", None],
+
 [NT.BitsOperationExpression.value, "VOID", None],
 [NT.BitsOperationExpression.value, "INT", None],
 [NT.BitsOperationExpression.value, "CHAR", None],
@@ -916,6 +935,7 @@ table_ll1 = [
 [NT.BitsOperationExpression.value, "INTEGER_LITERAL", None],
 [NT.BitsOperationExpression.value, "CHAR_LITERAL", None],
 [NT.BitsOperationExpression.value, "EOF", None],
+
 [NT.Statement.value, "VOID", None],
 [NT.Statement.value, "INT", None],
 [NT.Statement.value, "CHAR", None],
@@ -955,6 +975,7 @@ table_ll1 = [
 [NT.Statement.value, "INTEGER_LITERAL", None],
 [NT.Statement.value, "CHAR_LITERAL", None],
 [NT.Statement.value, "EOF", None],
+
 [NT.StatementStartId.value, "VOID", None],
 [NT.StatementStartId.value, "INT", None],
 [NT.StatementStartId.value, "CHAR", None],
@@ -994,6 +1015,7 @@ table_ll1 = [
 [NT.StatementStartId.value, "INTEGER_LITERAL", None],
 [NT.StatementStartId.value, "CHAR_LITERAL", None],
 [NT.StatementStartId.value, "EOF", None],
+
 [NT.StatementReturn.value, "VOID", None],
 [NT.StatementReturn.value, "INT", None],
 [NT.StatementReturn.value, "CHAR", None],
@@ -1033,6 +1055,7 @@ table_ll1 = [
 [NT.StatementReturn.value, "INTEGER_LITERAL", None],
 [NT.StatementReturn.value, "CHAR_LITERAL", None],
 [NT.StatementReturn.value, "EOF", None],
+
 [NT.Assignation.value, "VOID", None],
 [NT.Assignation.value, "INT", None],
 [NT.Assignation.value, "CHAR", None],
@@ -1072,6 +1095,7 @@ table_ll1 = [
 [NT.Assignation.value, "INTEGER_LITERAL", None],
 [NT.Assignation.value, "CHAR_LITERAL", None],
 [NT.Assignation.value, "EOF", None],
+
 [NT.CallFunction.value, "VOID", None],
 [NT.CallFunction.value, "INT", None],
 [NT.CallFunction.value, "CHAR", None],
@@ -1111,6 +1135,7 @@ table_ll1 = [
 [NT.CallFunction.value, "INTEGER_LITERAL", None],
 [NT.CallFunction.value, "CHAR_LITERAL", None],
 [NT.CallFunction.value, "EOF", None],
+
 [NT.CallFunctionArg.value, "VOID", None],
 [NT.CallFunctionArg.value, "INT", None],
 [NT.CallFunctionArg.value, "CHAR", None],
@@ -1150,6 +1175,7 @@ table_ll1 = [
 [NT.CallFunctionArg.value, "INTEGER_LITERAL", None],
 [NT.CallFunctionArg.value, "CHAR_LITERAL", None],
 [NT.CallFunctionArg.value, "EOF", None],
+
 [NT.ArgumentsMulti.value, "VOID", None],
 [NT.ArgumentsMulti.value, "INT", None],
 [NT.ArgumentsMulti.value, "CHAR", None],
@@ -1189,6 +1215,7 @@ table_ll1 = [
 [NT.ArgumentsMulti.value, "INTEGER_LITERAL", None],
 [NT.ArgumentsMulti.value, "CHAR_LITERAL", None],
 [NT.ArgumentsMulti.value, "EOF", None],
+
 [NT.While.value, "VOID", None],
 [NT.While.value, "INT", None],
 [NT.While.value, "CHAR", None],
@@ -1228,6 +1255,7 @@ table_ll1 = [
 [NT.While.value, "INTEGER_LITERAL", None],
 [NT.While.value, "CHAR_LITERAL", None],
 [NT.While.value, "EOF", None],
+
 [NT.IfElse.value, "VOID", None],
 [NT.IfElse.value, "INT", None],
 [NT.IfElse.value, "CHAR", None],
