@@ -10,11 +10,14 @@ type_table = {
 
 symbols_table = {
 }
+available_types = ["CHAR","INT","FLOAT","VOID"]
+
+is_returning = False
 
 def generate_symbols_table(token, lexer, current_stack):
-    global assign, condition, current_key, current_id, type_table
+    global assign, condition, current_key, current_id, type_table, is_returning
 
-    if (current_stack == NT.Globals.value or current_stack == NT.Statement.value) and token.type != "IDENTIFIER":
+    if (current_stack == NT.Globals.value or current_stack == NT.Statement.value) and token.type in available_types:
         current_id+=1
         type_table[current_id] = {
             "id": current_id,
@@ -26,7 +29,7 @@ def generate_symbols_table(token, lexer, current_stack):
         }
     if current_id in type_table:
         if (type_table[current_id]["start"] == NT.Globals.value or type_table[current_id]["start"] == NT.Statement.value) and current_stack in tokens and current_stack == token.type:
-            if token.type == "IDENTIFIER" and not assign and not condition:
+            if token.type == "IDENTIFIER" and not assign and not condition and not is_returning:
                 key = str(str(token.value)+str(lexer.level))
                 current_key = key
                 symbols_table[key] = {
@@ -49,6 +52,9 @@ def generate_symbols_table(token, lexer, current_stack):
                 elif token.type == "COMMA" or token.type == "SEMICOLON":
                     symbols_table[current_key]["state"] = False
                     assign = False
+                    is_returning = False
+                elif token.type == "RETURN":
+                    is_returning = True
                 elif symbols_table[current_key]["state"]:
                     symbols_table[current_key]["body"].append(token.value)
 
