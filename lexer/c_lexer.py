@@ -187,8 +187,8 @@ def c_lexer():
     # Newline
     def t_NEWLINE(t):
         r"\r?\n"
-        t.lexer.column = 0 # Reset column count, since we're on a new line. lexer.column = 0
-        t.lexer.lineno += len(t.value)
+        t.lexer.column = 1 # Reset column count, since we're on a new line. lexer.column = 0
+        t.lexer.lineno += 1
 
     # Whitespace
     def t_IGNORE(t):
@@ -208,6 +208,6 @@ def c_lexer():
     # Build the lexer
     lexer = lex.lex()
     lexer.level = 0
-    lexer.column = 0
+    lexer.column = 1
 
     return lexer

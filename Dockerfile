@@ -7,4 +7,4 @@ RUN pip install prettytable
 
 COPY . /app
 
-CMD [ "python", "kotlin_lexer.py" ]
+CMD [ "python", "main.py" ]

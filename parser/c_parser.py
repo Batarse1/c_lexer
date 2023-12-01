@@ -1,12 +1,12 @@
-from tokens import tokens
-from tokens import sync_tokens
-from parsing_table import table_ll1
+from tokens import tokens, sync_tokens
 
+from symbols_table.symbols_table import generate_symbols_table
+from symbols_table.print_table import print_table
+
+from .parsing_table import table_ll1
 from .parser_find_rules import find_rules
 from .parser_find_column import find_column
 from .parser_add_to_stack import add_to_stack
-from symbols_table.symbols_table import generate_symbols_table
-from symbols_table.print_table import print_table
 
 stack = ['EOF', 0]
 
@@ -34,7 +34,7 @@ def c_parser(lexer, file_path):
         if x == tok.type and x == 'EOF':
             if (not fail_input):
                 print("The code was recognized successfully")
-                print_table(symbols_table, ["key", "type", "value", "line number", "position", "level"])
+                print_table(symbols_table, ["key", "type", "value", "line", "column", "level"])
                 # generate_symbols_table(lexer_tokens)
             return
         else:
