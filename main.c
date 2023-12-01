@@ -1,11 +1,6 @@
 #include <stdio.h>
 
-int main() {    
-
-    char number1sdfsa, number2, sum;
-    
-    // calculate the sum
-    int sum = number1 + number2;      
-    
+int main() {
+    char sum = 1;
     return 0;
 }
