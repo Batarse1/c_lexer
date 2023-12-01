@@ -55,7 +55,7 @@ def c_parser(lexer, file_path):
                 continue
             if x in tokens and x != tok.type:
                 print("Compilation Failed")
-                print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column - len(tok.value)) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
+                print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column - len(str(tok.value))) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
                 panic_mode = True
                 fail_input = True
                 if x == "EOF":
@@ -69,7 +69,7 @@ def c_parser(lexer, file_path):
                 # print("Cell = " + str(cell))
                 if cell is None:
                     print("Compilation Failed")
-                    print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column - len(tok.value)) + " error: was not expected " + str(tok.type) + " in column " + str(lexer.column - len(tok.value)))
+                    print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column - len(str(tok.value))) + " error: was not expected " + str(tok.type) + " in column " + str(lexer.column - len(str(tok.value))))
                     panic_mode = True
                     fail_input = True
                     if tok.type == "EOF":

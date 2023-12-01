@@ -29,3 +29,4 @@ class NT(IntEnum):
     ArgumentsMulti = 25
     While = 26
     IfElse = 27
+    ValuesPrime = 28
