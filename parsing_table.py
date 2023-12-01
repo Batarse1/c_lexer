@@ -286,7 +286,7 @@ table_ll1 = [
 [NT.OperationLogic.value, "EQUALITY", ["EQUALITY"]],
 [NT.OperationLogic.value, "CONJUNCTION", ["CONJUNCTION"]],
 [NT.OperationLogic.value, "DISJUNCTION", ["DISJUNCTION"]],
-[NT.OperationLogic.value, "EXCLAMATION", None],
+[NT.OperationLogic.value, "EXCLAMATION", ["EXCLAMATION", "ASSIGNMENT"]],
 [NT.OperationLogic.value, "IDENTIFIER", None],
 [NT.OperationLogic.value, "FLOAT_LITERAL", None],
 [NT.OperationLogic.value, "INTEGER_LITERAL", None],

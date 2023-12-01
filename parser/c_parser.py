@@ -31,10 +31,11 @@ def c_parser(lexer, file_path):
         # print("x = " + str(x))
         # print("Stack = " + str(stack))
 
-        # symbols_table = generate_symbols_table(tok, lexer, x)
+        symbols_table = generate_symbols_table(tok, lexer, x)
         if x == tok.type and x == 'EOF':
             if (not fail_input):
                 print("The code was recognized successfully")
+                print(symbols_table)
                 # generate_symbols_table(lexer_tokens)
             return
         else:

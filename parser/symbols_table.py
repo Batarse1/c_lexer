@@ -1,7 +1,8 @@
 from tokens import tokens
 from non_terminals import NT
 
-symbols_table_id = 0
+assign = False
+current_key = ""
 current_id = 0
 non_terminals_symbols_table = {
 }
@@ -10,14 +11,12 @@ symbols_table = {
 }
 
 def generate_symbols_table(token, lexer, current_stack):
+    global assign
+    global current_key
     global current_id
     global non_terminals_symbols_table
 
-    print("current_id")
-    print(current_id)
-    print(token)
-
-    if current_stack == NT.D.value:
+    if current_stack == NT.Globals.value:
         current_id+=1
         non_terminals_symbols_table[current_id] = {
             "id": current_id,
@@ -28,10 +27,11 @@ def generate_symbols_table(token, lexer, current_stack):
             "level": lexer.level,
         }
     if current_id in non_terminals_symbols_table:
-        if non_terminals_symbols_table[current_id]["start"] == NT.D.value and current_stack in tokens and current_stack == token.type:
-            if token.type == "IDENTIFIER":
+        if non_terminals_symbols_table[current_id]["start"] == NT.Globals.value and current_stack in tokens and current_stack == token.type:
+            if token.type == "IDENTIFIER" and not assign:
+                current_key = token.value
                 symbols_table[token.value] = {
-                    "id": symbols_table_id,
+                    "id": current_key,
                     "state": False,
                     "type": non_terminals_symbols_table[current_id]["type"],
                     "body": [],
@@ -39,8 +39,15 @@ def generate_symbols_table(token, lexer, current_stack):
                     "position": lexer.column - len(token.value),
                     "level": lexer.level,
                 }
-            else:
-                print(symbols_table)
+            if current_key in symbols_table:
+                if token.type == "ASSIGNMENT":
+                    symbols_table[current_key]["state"] = True
+                    assign = True
+                elif token.type == "COMMA" or token.type == "SEMICOLON":
+                    symbols_table[current_key]["state"] = False
+                    assign = False
+                elif symbols_table[current_key]["state"]:
+                    symbols_table[current_key]["body"].append(token.value)
 
-    return non_terminals_symbols_table
+    return symbols_table
     
