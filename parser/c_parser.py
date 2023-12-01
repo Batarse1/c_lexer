@@ -27,11 +27,11 @@ def c_parser(lexer, file_path):
             continue
         else: 
             panic_mode = False
-        print("tok.type = " + tok.type)
-        print("x = " + str(x))
-        print("Stack = " + str(stack))
+        # print("tok.type = " + tok.type)
+        # print("x = " + str(x))
+        # print("Stack = " + str(stack))
 
-        symbols_table = generate_symbols_table(tok, lexer, x)
+        # symbols_table = generate_symbols_table(tok, lexer, x)
         if x == tok.type and x == 'EOF':
             if (not fail_input):
                 print("The code was recognized successfully")
@@ -55,7 +55,7 @@ def c_parser(lexer, file_path):
                 continue
             if x in tokens and x != tok.type:
                 print("Compilation Failed")
-                print(file_path + ":" + str(lexer.lineno) + ":" + str(lexer.column) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
+                print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column) + " error: invalid suffix " + str(tok.value) + ", was expected '" + str(x) + "'")
                 panic_mode = True
                 fail_input = True
                 if x == "EOF":
@@ -68,8 +68,8 @@ def c_parser(lexer, file_path):
                 cell=find_rules(table_ll1, x,tok.type)
                 # print("Cell = " + str(cell))
                 if cell is None:
-                    # print("Compilation Failed")
-                    print(file_path + ":" + str(lexer.lineno) + ":" + str(lexer.column) + " error: was not expected " + str(tok.type) + " in position " + str(lexer.column))
+                    print("Compilation Failed")
+                    print(file_path + ":" + str(tok.lineno) + ":" + str(lexer.column) + " error: was not expected " + str(tok.type) + " in position " + str(lexer.column))
                     panic_mode = True
                     fail_input = True
                     if tok.type == "EOF":

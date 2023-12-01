@@ -4,6 +4,54 @@ from tokens import tokens
 from keywords import keywords
 
 def c_lexer():
+    # Comments
+    def t_LINE_COMMENT(t):
+        r"\/\/.*"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        pass
+
+    def t_DELIMITED_COMMENT(t):
+        r"\/\*(.|\n)*\*\/"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        t.lexer.lineno += t.value.count("\n")
+        pass
+
+    # Comparison Operators
+    def t_LANGLE(t):
+        r"\<"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_RANGLE(t):
+        r"\>"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_EQUALITY(t):
+        r"=="
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+
+    # Logical Operators
+    def t_CONJUNCTION(t):
+        r"&&"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_DISJUNCTION(t):
+        r"\|\|"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+    def t_EXCLAMATION(t):
+        r"\!"
+        t.column = t.lexer.column
+        t.lexer.column += len(t.value)
+        return t
+
     # Includes
     def t_PREPROCESSOR(t):
         r"\#\w+"
@@ -106,40 +154,6 @@ def c_lexer():
         t.lexer.column += len(t.value)
         return t
 
-    # Comparison Operators
-    def t_LANGLE(t):
-        r"\<"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-    def t_RANGLE(t):
-        r"\>"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-    def t_EQUALITY(t):
-        r"=="
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-
-    # Logical Operators
-    def t_CONJUNCTION(t):
-        r"&&"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-    def t_DISJUNCTION(t):
-        r"\|\|"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-    def t_EXCLAMATION(t):
-        r"\!"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        return t
-
     # Literals
     def t_FLOAT_LITERAL(t):
         r"-\d+\.\d+ | \d+\.\d+"
@@ -169,19 +183,6 @@ def c_lexer():
         t.lexer.column += len(t.value)
         t.type = keywords.get(t.value, "IDENTIFIER")
         return t
-
-    # Comments
-    def t_LINE_COMMENT(t):
-        r"\/\/.*"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        pass
-
-    def t_DELIMITED_COMMENT(t):
-        r"\/\*(.|\n)*\*\/"
-        t.column = t.lexer.column
-        t.lexer.column += len(t.value)
-        pass
 
     # Newline
     def t_NEWLINE(t):

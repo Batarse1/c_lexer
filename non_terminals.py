@@ -6,7 +6,7 @@ class NT(IntEnum):
     Values = 2
     OperationAri = 3
     OperationLogic = 4
-    Operationbit = 5
+    OperationBit = 5
     Includes = 6
     Globals = 7
     GlobalsStartTypeId = 8
