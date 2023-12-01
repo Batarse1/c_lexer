@@ -1,11 +1,8 @@
-int a = 1;
-int main(){
-  int b = a + 2;
-  if(a){
-    int c = 2 + 3;
-  }
-  else {
-    int d = 3 + 4;
-  }
+int a = 2; // assign var = false, assign function false
+int b; // assign var = false, assign function false
+
+int main(){ // assign var = false, assign function true
+  int b = a + 2; // assign var = false, assign function false
+  int a;
   return 0;
 }

@@ -29,9 +29,10 @@ def generate_symbols_table(token, lexer, current_stack):
     if current_id in non_terminals_symbols_table:
         if non_terminals_symbols_table[current_id]["start"] == NT.Globals.value and current_stack in tokens and current_stack == token.type:
             if token.type == "IDENTIFIER" and not assign:
-                current_key = token.value
-                symbols_table[token.value] = {
-                    "id": current_key,
+                key = str(str(token.value)+str(lexer.level))
+                current_key = key
+                symbols_table[key] = {
+                    "id": key,
                     "state": False,
                     "type": non_terminals_symbols_table[current_id]["type"],
                     "body": [],
