@@ -11,6 +11,10 @@ int main() {
         i = i + 1;
     }
 
+    if(suma == 1 && i == 2 || condicion == 3){
+        condicion = 4;
+    }
+
     if(suma == 0 && i == 4 || condicion == 4){
         condicion = 2;
     }else{

@@ -30,3 +30,4 @@ class NT(IntEnum):
     While = 26
     IfElse = 27
     ValuesPrime = 28
+    ElseStatement = 29
