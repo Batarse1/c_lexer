@@ -1,32 +1,31 @@
 from enum import IntEnum
 
-# CLIMACO 
-
-# class NT(IntEnum):
-#     S = 0
-#     TT  = 1
-#     D = 2
-
-# DECLARATIONS
-
 class NT(IntEnum):
-    DD = 0
-    D  = 1
-    DI = 2
-    T = 3
-
-# SOMETHING
-
-# class NT(IntEnum):
-#     IF_ELSE = 0
-#     ELSE_ST = 1
-#     STATEMENT = 2
-#     CONDITION = 3
-#     CONDITION_P = 4
-#     EXPRESSION = 5
-#     EXPRESSION_P= 6
-#     WITH_PAREN = 7
-#     VALUES = 8
-#     OP_ARI = 9
-#     OP_LOGIC = 10
-#     NEGATION = 11
+    S = 0
+    Type = 1
+    Values = 2
+    OperationAri = 3
+    OperationLogic = 4
+    Operationbit = 5
+    Includes = 6
+    Globals = 7
+    GlobalsStartTypeId = 8
+    DeclarationsForm = 9
+    Declarator = 10
+    Function = 11
+    VoidFunction = 12
+    Params = 13
+    ParamMulti = 14
+    Expression = 15
+    InitialExpression = 16
+    MultpleExclamation = 17
+    ExpressionPrime = 18
+    Statement = 19
+    StatementStartId = 20
+    StatementReturn = 21
+    Assignation = 22
+    CallFunction = 23
+    CallFunctionArg = 24
+    ArgumentsMulti = 25
+    While = 26
+    IfElse = 27
